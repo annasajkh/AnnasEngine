@@ -1,0 +1,46 @@
+D:\Physics Engines\MagicPhysX.Toolkit\bin\Debug\net7.0\MagicPhysX.Toolkit.exe
+D:\Physics Engines\MagicPhysX.Toolkit\bin\Debug\net7.0\MagicPhysX.Toolkit.deps.json
+D:\Physics Engines\MagicPhysX.Toolkit\bin\Debug\net7.0\MagicPhysX.Toolkit.runtimeconfig.json
+D:\Physics Engines\MagicPhysX.Toolkit\bin\Debug\net7.0\MagicPhysX.Toolkit.dll
+D:\Physics Engines\MagicPhysX.Toolkit\bin\Debug\net7.0\MagicPhysX.Toolkit.pdb
+D:\Physics Engines\MagicPhysX.Toolkit\bin\Debug\net7.0\MagicPhysX.dll
+D:\Physics Engines\MagicPhysX.Toolkit\obj\Debug\net7.0\MagicPhysX.Toolkit.csproj.AssemblyReference.cache
+D:\Physics Engines\MagicPhysX.Toolkit\obj\Debug\net7.0\MagicPhysX.Toolkit.GeneratedMSBuildEditorConfig.editorconfig
+D:\Physics Engines\MagicPhysX.Toolkit\obj\Debug\net7.0\MagicPhysX.Toolkit.AssemblyInfoInputs.cache
+D:\Physics Engines\MagicPhysX.Toolkit\obj\Debug\net7.0\MagicPhysX.Toolkit.AssemblyInfo.cs
+D:\Physics Engines\MagicPhysX.Toolkit\obj\Debug\net7.0\MagicPhysX.Toolkit.csproj.CoreCompileInputs.cache
+D:\Physics Engines\MagicPhysX.Toolkit\obj\Debug\net7.0\MagicPhysX.Toolkit.csproj.CopyComplete
+D:\Physics Engines\MagicPhysX.Toolkit\obj\Debug\net7.0\MagicPhysX.Toolkit.dll
+D:\Physics Engines\MagicPhysX.Toolkit\obj\Debug\net7.0\refint\MagicPhysX.Toolkit.dll
+D:\Physics Engines\MagicPhysX.Toolkit\obj\Debug\net7.0\MagicPhysX.Toolkit.pdb
+D:\Physics Engines\MagicPhysX.Toolkit\obj\Debug\net7.0\MagicPhysX.Toolkit.genruntimeconfig.cache
+D:\Physics Engines\MagicPhysX.Toolkit\obj\Debug\net7.0\ref\MagicPhysX.Toolkit.dll
+D:\Projects\Programming\C#\Emergence\MagicPhysX.Toolkit\bin\Debug\net7.0\MagicPhysX.Toolkit.exe
+D:\Projects\Programming\C#\Emergence\MagicPhysX.Toolkit\bin\Debug\net7.0\MagicPhysX.Toolkit.deps.json
+D:\Projects\Programming\C#\Emergence\MagicPhysX.Toolkit\bin\Debug\net7.0\MagicPhysX.Toolkit.runtimeconfig.json
+D:\Projects\Programming\C#\Emergence\MagicPhysX.Toolkit\bin\Debug\net7.0\MagicPhysX.Toolkit.dll
+D:\Projects\Programming\C#\Emergence\MagicPhysX.Toolkit\bin\Debug\net7.0\MagicPhysX.Toolkit.pdb
+D:\Projects\Programming\C#\Emergence\MagicPhysX.Toolkit\bin\Debug\net7.0\MagicPhysX.dll
+D:\Projects\Programming\C#\Emergence\MagicPhysX.Toolkit\obj\Debug\net7.0\MagicPhysX.Toolkit.csproj.AssemblyReference.cache
+D:\Projects\Programming\C#\Emergence\MagicPhysX.Toolkit\obj\Debug\net7.0\MagicPhysX.Toolkit.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\Programming\C#\Emergence\MagicPhysX.Toolkit\obj\Debug\net7.0\MagicPhysX.Toolkit.AssemblyInfoInputs.cache
+D:\Projects\Programming\C#\Emergence\MagicPhysX.Toolkit\obj\Debug\net7.0\MagicPhysX.Toolkit.AssemblyInfo.cs
+D:\Projects\Programming\C#\Emergence\MagicPhysX.Toolkit\obj\Debug\net7.0\MagicPhysX.Toolkit.csproj.CoreCompileInputs.cache
+D:\Projects\Programming\C#\Emergence\MagicPhysX.Toolkit\obj\Debug\net7.0\MagicPhysX.Toolkit.csproj.CopyComplete
+D:\Projects\Programming\C#\Emergence\MagicPhysX.Toolkit\obj\Debug\net7.0\MagicPhysX.Toolkit.dll
+D:\Projects\Programming\C#\Emergence\MagicPhysX.Toolkit\obj\Debug\net7.0\refint\MagicPhysX.Toolkit.dll
+D:\Projects\Programming\C#\Emergence\MagicPhysX.Toolkit\obj\Debug\net7.0\MagicPhysX.Toolkit.pdb
+D:\Projects\Programming\C#\Emergence\MagicPhysX.Toolkit\obj\Debug\net7.0\MagicPhysX.Toolkit.genruntimeconfig.cache
+D:\Projects\Programming\C#\Emergence\MagicPhysX.Toolkit\obj\Debug\net7.0\ref\MagicPhysX.Toolkit.dll
+D:\Projects\Programming\C#\AnnasEngine\MagicPhysX.Toolkit\bin\Debug\net7.0\MagicPhysX.Toolkit.deps.json
+D:\Projects\Programming\C#\AnnasEngine\MagicPhysX.Toolkit\bin\Debug\net7.0\MagicPhysX.Toolkit.dll
+D:\Projects\Programming\C#\AnnasEngine\MagicPhysX.Toolkit\bin\Debug\net7.0\MagicPhysX.Toolkit.pdb
+D:\Projects\Programming\C#\AnnasEngine\MagicPhysX.Toolkit\obj\Debug\net7.0\MagicPhysX.Toolkit.csproj.AssemblyReference.cache
+D:\Projects\Programming\C#\AnnasEngine\MagicPhysX.Toolkit\obj\Debug\net7.0\MagicPhysX.Toolkit.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\Programming\C#\AnnasEngine\MagicPhysX.Toolkit\obj\Debug\net7.0\MagicPhysX.Toolkit.AssemblyInfoInputs.cache
+D:\Projects\Programming\C#\AnnasEngine\MagicPhysX.Toolkit\obj\Debug\net7.0\MagicPhysX.Toolkit.AssemblyInfo.cs
+D:\Projects\Programming\C#\AnnasEngine\MagicPhysX.Toolkit\obj\Debug\net7.0\MagicPhysX.Toolkit.csproj.CoreCompileInputs.cache
+D:\Projects\Programming\C#\AnnasEngine\MagicPhysX.Toolkit\obj\Debug\net7.0\MagicPhysX.Toolkit.dll
+D:\Projects\Programming\C#\AnnasEngine\MagicPhysX.Toolkit\obj\Debug\net7.0\refint\MagicPhysX.Toolkit.dll
+D:\Projects\Programming\C#\AnnasEngine\MagicPhysX.Toolkit\obj\Debug\net7.0\MagicPhysX.Toolkit.pdb
+D:\Projects\Programming\C#\AnnasEngine\MagicPhysX.Toolkit\obj\Debug\net7.0\ref\MagicPhysX.Toolkit.dll

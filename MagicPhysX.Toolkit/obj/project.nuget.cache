@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "yJ1M3/RfhOUr3rIQoBKCDhX9PDDKM0Ejf76DAM76/dteAp83dVKsP+m0S25APYg/z/Y+oInOfpIUnb2Lkc6zCA==",
+  "success": true,
+  "projectFilePath": "D:\\Projects\\Programming\\C#\\AnnasEngine\\MagicPhysX.Toolkit\\MagicPhysX.Toolkit.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Annas\\.nuget\\packages\\magicphysx\\1.0.0\\magicphysx.1.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
