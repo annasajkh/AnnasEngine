@@ -1,9 +1,8 @@
-﻿using AnnasEngine.Scripts.DataStructures.Containers;
-using OpenTK.Windowing.GraphicsLibraryFramework;
+﻿using OpenTK.Windowing.GraphicsLibraryFramework;
 
 namespace AnnasEngine.Scripts.Utils
 {
-    public abstract class Scene : Container
+    public abstract class Scene
     {
         public abstract void Load();
 

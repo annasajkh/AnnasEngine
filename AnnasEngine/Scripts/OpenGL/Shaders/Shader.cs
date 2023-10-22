@@ -14,7 +14,6 @@ namespace AnnasEngine.Scripts.OpenGL.Shaders
             string geometryShaderSource = File.ReadAllText(geometryShaderPath);
             string fragmentShaderSource = File.ReadAllText(fragmentShaderPath);
 
-
             int vertexShader = GL.CreateShader(ShaderType.VertexShader);
             GL.ShaderSource(vertexShader, vertexShaderSource);
 
