@@ -1,17 +1,17 @@
 ﻿namespace AnnasEngine.Scripts.DataStructures.Containers
 {
-    public class ContainerSet
+    public class ContainerSet<C> where C : IComponent
     {
-        public delegate void ComponentChangedEvent(ContainerSet sender, IComponent component);
-        public delegate void ComponentReplacedEvent(ContainerSet sender, IComponent oldComponent, IComponent newComponent);
+        public delegate void ComponentChangedEvent(ContainerSet<C> sender, C component);
+        public delegate void ComponentReplacedEvent(ContainerSet<C> sender, C oldComponent, C newComponent);
 
         public event ComponentChangedEvent? OnComponentAdded;
         public event ComponentChangedEvent? OnComponentRemoved;
         public event ComponentReplacedEvent? OnComponentReplaced;
 
-        private Dictionary<Type, IComponent> Components { get; } = new Dictionary<Type, IComponent>();
+        private Dictionary<Type, C> Components { get; } = new Dictionary<Type, C>();
 
-        public void AddComponent(IComponent component)
+        public void AddComponent(C component)
         {
             if (Components.ContainsKey(component.GetType()))
             {
@@ -23,29 +23,29 @@
             OnComponentAdded?.Invoke(this, component);
         }
 
-        public void RemoveComponent<T>() where T : IComponent
+        public void RemoveComponent<T>() where T : C
         {
             CheckContains<T>();
 
-            IComponent component = Components[typeof(T)];
+            C component = Components[typeof(T)];
 
             Components.Remove(typeof(T));
 
             OnComponentRemoved?.Invoke(this, component);
         }
 
-        public void ReplaceComponent<T>(IComponent component) where T : IComponent
+        public void ReplaceComponent<T>(C component) where T : C
         {
             CheckContains<T>();
 
-            IComponent oldComponent = Components[typeof(T)];
+            C oldComponent = Components[typeof(T)];
 
             Components[typeof(T)] = component;
 
             OnComponentReplaced?.Invoke(this, oldComponent, component);
         }
 
-        public T? GetComponent<T>() where T : IComponent
+        public T? GetComponent<T>() where T : C
         {
             if (!Components.ContainsKey(typeof(T)))
             {
@@ -55,17 +55,17 @@
             return (T)Components[typeof(T)];
         }
 
-        public Dictionary<Type, IComponent>.ValueCollection GetAllComponents()
+        public Dictionary<Type, C>.ValueCollection GetAllComponents()
         {
             return Components.Values;
         }
 
-        public bool Contains<T>() where T : IComponent
+        public bool Contains<T>() where T : C
         {
             return Components.ContainsKey(typeof(T));
         }
 
-        private void CheckContains<T>() where T : IComponent
+        private void CheckContains<T>() where T : C
         {
             if (!Contains<T>())
             {
@@ -98,7 +98,7 @@
         /// <summary>
         /// set a specific property for a component of this container
         /// </summary>
-        public object? GetField(IComponent component, string propertyName)
+        public object? GetField(C component, string propertyName)
         {
             var property = component.GetType().GetProperty(propertyName);
 
@@ -114,7 +114,7 @@
         /// <summary>
         /// set specific property for a component of this container
         /// </summary>
-        public void SetField(IComponent component, string propertyName, object newValue)
+        public void SetField(C component, string propertyName, object newValue)
         {
             var property = component.GetType().GetProperty(propertyName);
 
@@ -135,7 +135,7 @@
         /// <summary>
         /// invoke a specific method for a component of this container
         /// </summary>
-        public void Invoke(IComponent component, string methodName, object[] parameters)
+        public void Invoke(C component, string methodName, object[] parameters)
         {
             var method = component.GetType().GetMethod(methodName);
 

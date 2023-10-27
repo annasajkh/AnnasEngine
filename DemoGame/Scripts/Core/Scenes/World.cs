@@ -81,13 +81,11 @@ namespace DemoGame.Scripts.Core.Scenes
                 {
                     Console.WriteLine($"Box Count: {cubes.Count}");
 
-                    Transform transform = new Transform(position: new Vector3(Game.Random.NextSingle() * 50 - 25, Game.Random.NextSingle() * 50 - 25 + 50, Game.Random.NextSingle() * 50 - 25),
+                    Transform transform = new Transform(position: new Vector3(Game.Random.NextSingle() * 50 - 25, 10, Game.Random.NextSingle() * 50 - 25),
                                                         rotation: Quaternion.FromEulerAngles(Game.Random.NextSingle() * MathF.Tau, Game.Random.NextSingle() * MathF.Tau, Game.Random.NextSingle() * MathF.Tau),
                                                         scale: Vector3.One);
 
-                    GameObject cube = new GameObject(transform);
-
-                    cube.AddComponent(new Model(MeshInstance.Cube));
+                    GameObject cube = GameObject.CreateDynamicBox(transform, 10, PhysicsScene, pxMaterial);
 
                     cubes.Add(cube);
                 });
@@ -157,13 +155,6 @@ namespace DemoGame.Scripts.Core.Scenes
 
         public void PhysicsUpdate()
         {
-
-            for (int i = 0; i < cubes.Count; i++)
-            {
-                cubes[i].Transform.position += new Vector3(Game.Random.NextSingle() * 2 - 1, Game.Random.NextSingle() * 2 - 1, Game.Random.NextSingle() * 2 - 1).Normalized() * 0.05f;
-            }
-
-
             floor.GetComponent<StaticPhysicsObject>()?.BeforePhysicsUpdate();
 
             for (int i = 0; i < cubes.Count; i++)

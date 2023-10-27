@@ -11,7 +11,7 @@ using Transform = AnnasEngine.Scripts.DataStructures.Transform;
 
 namespace AnnasEngine.Scripts.GameObjects
 {
-    public class GameObject : ContainerSet
+    public class GameObject : ContainerSet<GameObjectComponent>
     {
 
         public Transform Transform { get; set; }
@@ -78,17 +78,17 @@ namespace AnnasEngine.Scripts.GameObjects
             fieldInfo.SetValue(component, gameObject);
         }
 
-        private void GameObjectComponentAdded(ContainerSet sender, IComponent component)
+        private void GameObjectComponentAdded(ContainerSet<GameObjectComponent> sender, IComponent component)
         {
             SetComponentParent(component, this);
         }
 
-        private void GameObjectComponentRemoved(ContainerSet sender, IComponent component)
+        private void GameObjectComponentRemoved(ContainerSet<GameObjectComponent> sender, IComponent component)
         {
             SetComponentParent(component, null);
         }
 
-        private void GameObjectComponentReplaced(ContainerSet sender, IComponent oldComponent, IComponent newComponent)
+        private void GameObjectComponentReplaced(ContainerSet<GameObjectComponent> sender, IComponent oldComponent, IComponent newComponent)
         {
             PropertyInfo? propertyInfo = typeof(GameObjectComponent).GetProperty("parent", BindingFlags.NonPublic | BindingFlags.Instance);
 

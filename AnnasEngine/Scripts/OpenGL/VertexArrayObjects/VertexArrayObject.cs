@@ -1,5 +1,4 @@
 ﻿using AnnasEngine.Scripts.DataStructures.Containers;
-using AnnasEngine.Scripts.DataStructures.Vertex.Components;
 using AnnasEngine.Scripts.OpenGL.OpenGLObjects;
 using AnnasEngine.Scripts.OpenGL.VertexArrayObjects.Components;
 using OpenTK.Graphics.OpenGL4;
@@ -10,7 +9,7 @@ namespace AnnasEngine.Scripts.OpenGL.VertexArrayObjects
     // this is also component based so you can build your own custom VertexArrayObject
     public class VertexArrayObject : OpenGLObject
     {
-        public Container Container { get; }
+        public Container<VertexArrayComponent> Container { get; }
         public uint AllAttributeSize { get; protected set; }
         public bool Normalized { get; set; }
 
@@ -18,7 +17,7 @@ namespace AnnasEngine.Scripts.OpenGL.VertexArrayObjects
         {
             Handle = GL.GenVertexArray();
 
-            Container = new Container();
+            Container = new Container<VertexArrayComponent>();
 
             Normalized = normalized;
 
@@ -39,21 +38,21 @@ namespace AnnasEngine.Scripts.OpenGL.VertexArrayObjects
             return vertexArrayObject;
         }
 
-        private void VertexArrayObjectComponentAdded(Container sender, IComponent component)
+        private void VertexArrayObjectComponentAdded(Container<VertexArrayComponent> sender, IComponent component)
         {
             AllAttributeSize += ((VertexArrayComponent)component).AttributeSize;
         }
 
-        private void VertexArrayObjectComponentRemoved(Container sender, IComponent component)
+        private void VertexArrayObjectComponentRemoved(Container<VertexArrayComponent> sender, IComponent component)
         {
             AllAttributeSize -= ((VertexArrayComponent)component).AttributeSize;
         }
 
-        private void VertexArrayObjectComponentReplaced(Container sender, IComponent oldComponent, IComponent newComponent)
+        private void VertexArrayObjectComponentReplaced(Container<VertexArrayComponent> sender, IComponent oldComponent, IComponent newComponent)
         {
             AllAttributeSize = 0;
 
-            foreach (VertexComponent component in Container.GetAllComponents())
+            foreach (VertexArrayComponent component in Container.GetAllComponents())
             {
                 AllAttributeSize += component.AttributeSize;
             }

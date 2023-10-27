@@ -6,7 +6,7 @@ using System.Text;
 namespace AnnasEngine.Scripts.DataStructures.Vertex
 {
     // Component based vertex so you can build your own custom Vertex
-    public class Vertex : ContainerSet
+    public class Vertex : ContainerSet<VertexComponent>
     {
         public uint AllAttributeSize { get; private set; }
 
@@ -20,7 +20,7 @@ namespace AnnasEngine.Scripts.DataStructures.Vertex
             OnComponentReplaced += VertexComponentReplaced;
         }
 
-        public static Vertex CreateDefaultVertexEntity(Vector3 position, Color4 color, Vector3 normal, Vector2 textureCoordinate)
+        public static Vertex CreateDefaultVertex(Vector3 position, Color4 color, Vector3 normal, Vector2 textureCoordinate)
         {
             Vertex vertexEntity = new Vertex();
 
@@ -32,17 +32,17 @@ namespace AnnasEngine.Scripts.DataStructures.Vertex
             return vertexEntity;
         }
 
-        private void VertexComponentAdded(ContainerSet sender, IComponent component)
+        private void VertexComponentAdded(ContainerSet<VertexComponent> sender, IComponent component)
         {
             AllAttributeSize += ((VertexComponent)component).AttributeSize;
         }
 
-        private void VertexComponentRemoved(ContainerSet sender, IComponent component)
+        private void VertexComponentRemoved(ContainerSet<VertexComponent> sender, IComponent component)
         {
             AllAttributeSize -= ((VertexComponent)component).AttributeSize;
         }
 
-        private void VertexComponentReplaced(ContainerSet sender, IComponent oldComponent, IComponent newComponent)
+        private void VertexComponentReplaced(ContainerSet<VertexComponent> sender, IComponent oldComponent, IComponent newComponent)
         {
             AllAttributeSize = 0;
 

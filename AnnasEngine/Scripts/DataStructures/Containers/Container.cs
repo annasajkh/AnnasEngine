@@ -1,11 +1,11 @@
 ﻿namespace AnnasEngine.Scripts.DataStructures.Containers
 {
-    public class Container
+    public class Container<C> where C : IComponent
     {
-        private Dictionary<int, IComponent> Components { get; } = new Dictionary<int, IComponent>();
+        private Dictionary<int, C> Components { get; } = new Dictionary<int, C>();
 
-        public delegate void ComponentChangedEvent(Container sender, IComponent component);
-        public delegate void ComponentReplacedEvent(Container sender, IComponent oldComponent, IComponent newComponent);
+        public delegate void ComponentChangedEvent(Container<C> sender, C component);
+        public delegate void ComponentReplacedEvent(Container<C> sender, C oldComponent, C newComponent);
 
         public event ComponentChangedEvent? OnComponentAdded;
         public event ComponentChangedEvent? OnComponentRemoved;
@@ -14,7 +14,7 @@
         /// <summary>
         /// Add a component to the container returns key of the component
         /// </summary>
-        public int AddComponent(IComponent component)
+        public int AddComponent(C component)
         {
             int key = component.GetHashCode();
 
@@ -30,7 +30,7 @@
             return key;
         }
 
-        public void RemoveComponent(IComponent component)
+        public void RemoveComponent(C component)
         {
             int key = component.GetHashCode();
 
@@ -56,7 +56,7 @@
             Components.Remove(key);
         }
 
-        public void RemoveAllComponentOfType<T>() where T : IComponent
+        public void RemoveAllComponentOfType<T>() where T : C
         {
             List<int> keysToRemove = new List<int>();
 
@@ -88,7 +88,7 @@
             }
         }
 
-        public void RemoveComponents(List<IComponent> components)
+        public void RemoveComponents(List<C> components)
         {
             foreach (var component in components)
             {
@@ -96,7 +96,7 @@
             }
         }
 
-        public void ReplaceComponent(IComponent oldComponent, IComponent newComponent)
+        public void ReplaceComponent(C oldComponent, C newComponent)
         {
             int oldKey = oldComponent.GetHashCode();
             int newKey = newComponent.GetHashCode();
@@ -113,17 +113,17 @@
             OnComponentReplaced?.Invoke(this, oldComponent, newComponent);
         }
 
-        public IComponent? GetComponent(int hashCode)
+        public C? GetComponent(int hashCode)
         {
             if (!Components.ContainsKey(hashCode))
             {
-                return null;
+                return default;
             }
 
             return Components[hashCode];
         }
 
-        public IComponent? GetFirstComponentOfType<T>() where T : IComponent
+        public C? GetFirstComponentOfType<T>() where T : C
         {
             foreach (var component in Components.Values)
             {
@@ -133,12 +133,12 @@
                 }
             }
 
-            return null;
+            return default;
         }
 
-        public List<IComponent> GetAllComponentOfType<T>() where T : IComponent
+        public List<C> GetAllComponentOfType<T>() where T : C
         {
-            List<IComponent> componentsOfType = new List<IComponent>();
+            List<C> componentsOfType = new List<C>();
 
             foreach (var component in Components.Values)
             {
@@ -156,7 +156,7 @@
             return componentsOfType;
         }
 
-        public Dictionary<int, IComponent>.ValueCollection GetAllComponents()
+        public Dictionary<int, C>.ValueCollection GetAllComponents()
         {
             return Components.Values;
         }
@@ -176,7 +176,7 @@
         /// <summary>
         /// set a specific property for a component of this container
         /// </summary>
-        public object? GetField(IComponent component, string propertyName)
+        public object? GetField(C component, string propertyName)
         {
             var property = component.GetType().GetProperty(propertyName);
 
@@ -192,7 +192,7 @@
         /// <summary>
         /// set specific property for a component of this container
         /// </summary>
-        public void SetField(IComponent component, string propertyName, object newValue)
+        public void SetField(C component, string propertyName, object newValue)
         {
             var property = component.GetType().GetProperty(propertyName);
 
@@ -213,7 +213,7 @@
         /// <summary>
         /// invoke a specific method for a component of this container
         /// </summary>
-        public void Invoke(IComponent component, string methodName, object[] parameters)
+        public void Invoke(C component, string methodName, object[] parameters)
         {
             var method = component.GetType().GetMethod(methodName);
 
