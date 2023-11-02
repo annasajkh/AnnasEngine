@@ -1,4 +1,5 @@
-﻿using AnnasEngine.Scripts.OpenGL.Shaders;
+﻿using AnnasEngine.Scripts.GameObjects;
+using AnnasEngine.Scripts.OpenGL.Shaders;
 
 namespace AnnasEngine.Scripts.Rendering.Lights
 {
@@ -60,7 +61,7 @@ namespace AnnasEngine.Scripts.Rendering.Lights
 
         public void Update()
         {
-            Shader.SetVector3($"pointLights[{pointLights[this]}].position", GetParent().Transform.position);
+            Shader.SetVector3($"pointLights[{pointLights[this]}].position", ((GameObject3D)GetParent()).Transform.position);
         }
     }
 }

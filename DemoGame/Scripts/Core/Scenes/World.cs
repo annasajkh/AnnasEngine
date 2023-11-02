@@ -28,16 +28,16 @@ namespace DemoGame.Scripts.Core.Scenes
 
         private Player player;
 
-        private List<GameObject> cubes = new List<GameObject>();
+        private List<GameObject3D> cubes = new List<GameObject3D>();
 
-        private GameObject floor;
+        private GameObject3D floor;
 
         private Timer spawnTimer;
         private Timer physicsUpdate;
 
         private float time = 45;
 
-        GameObject light;
+        GameObject3D light;
 
         public World()
         {
@@ -63,13 +63,13 @@ namespace DemoGame.Scripts.Core.Scenes
                 PxMaterial* pxMaterial = PhysicsSystem.CreateMaterial(0.5f, 0.5f, 0.6f);
 
 
-                floor = GameObject.CreateStaticBox(new Transform(Vector3.Zero, Quaternion.Identity, new Vector3(200, 1, 200)), PhysicsScene, pxMaterial);
+                floor = GameObject3D.CreateStaticBox(new Transform(Vector3.Zero, Quaternion.Identity, new Vector3(200, 1, 200)), PhysicsScene, pxMaterial);
 
                 Transform transformCube = new Transform(position: new Vector3(Game.Random.NextSingle() * 50 - 25, 10, Game.Random.NextSingle() * 50 - 25),
                                                         rotation: Quaternion.FromEulerAngles(MathHelper.DegreesToRadians(45), MathHelper.DegreesToRadians(0), MathHelper.DegreesToRadians(45)),
                                                         scale: Vector3.One);
 
-                light = new GameObject(new Transform(new Vector3(50, 10, 0), Quaternion.Identity, Vector3.One));
+                light = new GameObject3D(new Transform(new Vector3(50, 10, 0), Quaternion.Identity, Vector3.One));
 
                 PointLight pointLight = new PointLight(Renderer.Shader, 0);
 
@@ -85,7 +85,7 @@ namespace DemoGame.Scripts.Core.Scenes
                                                         rotation: Quaternion.FromEulerAngles(Game.Random.NextSingle() * MathF.Tau, Game.Random.NextSingle() * MathF.Tau, Game.Random.NextSingle() * MathF.Tau),
                                                         scale: Vector3.One);
 
-                    GameObject cube = GameObject.CreateDynamicBox(transform, 10, PhysicsScene, pxMaterial);
+                    GameObject3D cube = GameObject3D.CreateDynamicBox(transform, 10, PhysicsScene, pxMaterial);
 
                     cubes.Add(cube);
                 });

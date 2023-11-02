@@ -1,4 +1,5 @@
-﻿using AnnasEngine.Scripts.OpenGL.Shaders;
+﻿using AnnasEngine.Scripts.GameObjects;
+using AnnasEngine.Scripts.OpenGL.Shaders;
 using OpenTK.Mathematics;
 
 namespace AnnasEngine.Scripts.Rendering.Lights
@@ -10,7 +11,7 @@ namespace AnnasEngine.Scripts.Rendering.Lights
         {
             get
             {
-                return Vector3.Transform(Vector3.UnitZ, GetParent().Transform.rotation);
+                return Vector3.Transform(Vector3.UnitZ, ((GameObject3D)GetParent()).Transform.rotation);
             }
         }
 
@@ -100,7 +101,7 @@ namespace AnnasEngine.Scripts.Rendering.Lights
 
         public void Update()
         {
-            Shader.SetVector3($"spotLights[{spotLights[this]}].position", GetParent().Transform.position);
+            Shader.SetVector3($"spotLights[{spotLights[this]}].position", ((GameObject3D)GetParent()).Transform.position);
             Shader.SetVector3($"spotLights[{spotLights[this]}].direction", Direction);
         }
 

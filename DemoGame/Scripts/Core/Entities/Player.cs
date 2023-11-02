@@ -9,7 +9,7 @@ using OpenTK.Windowing.GraphicsLibraryFramework;
 
 namespace DemoGame.Scripts.Core.Entities
 {
-    public class Player : GameObject
+    public class Player : GameObject3D
     {
         public Vector3 Velocity { get; set; }
 

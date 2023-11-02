@@ -1,25 +1,13 @@
 ﻿using AnnasEngine.Scripts.DataStructures.Containers;
-using AnnasEngine.Scripts.GameObjects.Components;
-using AnnasEngine.Scripts.Physics.PhysicsObjects;
-using AnnasEngine.Scripts.Physics.PhysicsShapes;
-using AnnasEngine.Scripts.Rendering;
-using MagicPhysX;
-using MagicPhysX.Toolkit;
-using OpenTK.Mathematics;
 using System.Reflection;
-using Transform = AnnasEngine.Scripts.DataStructures.Transform;
 
 namespace AnnasEngine.Scripts.GameObjects
 {
     public class GameObject : ContainerSet<GameObjectComponent>
     {
 
-        public Transform Transform { get; set; }
-
-        public GameObject(Transform transform)
+        public GameObject()
         {
-            Transform = transform;
-
             OnComponentAdded += GameObjectComponentAdded;
             OnComponentRemoved += GameObjectComponentRemoved;
             OnComponentReplaced += GameObjectComponentReplaced;
@@ -28,38 +16,6 @@ namespace AnnasEngine.Scripts.GameObjects
         public void Update()
         {
             InvokeAll("Update", new object[] { });
-        }
-
-        // TODO: Implement all shapes
-
-        public static unsafe GameObject CreateDynamicBox(Transform transform, float density, PhysicsScene physicsScene, PxMaterial* pxMaterial)
-        {
-            GameObject dynamicBox = new GameObject(transform);
-
-            dynamicBox.AddComponent(new Model(MeshInstance.Cube));
-            dynamicBox.AddComponent(new DynamicPhysicsObject(transform, density, new BoxShape(Vector3.One / 2), physicsScene, pxMaterial));
-
-            return dynamicBox;
-        }
-
-        public static unsafe GameObject CreateStaticBox(Transform transform, PhysicsScene physicsScene, PxMaterial* pxMaterial)
-        {
-            GameObject staticBox = new GameObject(transform);
-
-            staticBox.AddComponent(new Model(MeshInstance.Cube));
-            staticBox.AddComponent(new StaticPhysicsObject(transform, new BoxShape(Vector3.One / 2), physicsScene, pxMaterial));
-
-            return staticBox;
-        }
-
-        public static unsafe GameObject CreateKinematicBox(Transform transform, float density, PhysicsScene physicsScene, PxMaterial* pxMaterial)
-        {
-            GameObject KinematicBox = new GameObject(transform);
-
-            KinematicBox.AddComponent(new Model(MeshInstance.Cube));
-            KinematicBox.AddComponent(new KinematicPhysicsObject(transform, density, new BoxShape(Vector3.One / 2), physicsScene, pxMaterial));
-
-            return KinematicBox;
         }
 
         /// <summary>
@@ -90,12 +46,7 @@ namespace AnnasEngine.Scripts.GameObjects
 
         private void GameObjectComponentReplaced(ContainerSet<GameObjectComponent> sender, IComponent oldComponent, IComponent newComponent)
         {
-            PropertyInfo? propertyInfo = typeof(GameObjectComponent).GetProperty("parent", BindingFlags.NonPublic | BindingFlags.Instance);
-
-            if (propertyInfo == null)
-            {
-                throw new Exception("Error: parent field not found, only component that inherite from GameObjectComponent should be added to GameObject");
-            }
+            PropertyInfo propertyInfo = typeof(GameObjectComponent).GetProperty("parent", BindingFlags.NonPublic | BindingFlags.Instance)!;
 
             propertyInfo.SetValue(oldComponent, null);
             propertyInfo.SetValue(newComponent, this);

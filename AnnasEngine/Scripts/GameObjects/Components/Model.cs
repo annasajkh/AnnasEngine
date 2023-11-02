@@ -12,9 +12,9 @@ namespace AnnasEngine.Scripts.GameObjects.Components
         {
             get
             {
-                return Matrix4.CreateScale(GetParent().Transform.scale.X, GetParent().Transform.scale.Y, GetParent().Transform.scale.Z) *
-                       Matrix4.CreateFromQuaternion(GetParent().Transform.rotation) *
-                       Matrix4.CreateTranslation(GetParent().Transform.position.X, GetParent().Transform.position.Y, GetParent().Transform.position.Z);
+                return Matrix4.CreateScale(((GameObject3D)GetParent()).Transform.scale.X, ((GameObject3D)GetParent()).Transform.scale.Y, ((GameObject3D)GetParent()).Transform.scale.Z) *
+                       Matrix4.CreateFromQuaternion(((GameObject3D)GetParent()).Transform.rotation) *
+                       Matrix4.CreateTranslation(((GameObject3D)GetParent()).Transform.position.X, ((GameObject3D)GetParent()).Transform.position.Y, ((GameObject3D)GetParent()).Transform.position.Z);
             }
         }
 

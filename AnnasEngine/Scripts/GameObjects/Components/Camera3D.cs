@@ -9,7 +9,7 @@ namespace AnnasEngine.Scripts.GameObjects.Components
         {
             get
             {
-                return Vector3.Transform(Vector3.UnitZ, GetParent().Transform.rotation);
+                return Vector3.Transform(Vector3.UnitZ, ((GameObject3D)GetParent()).Transform.rotation);
             }
         }
 
@@ -47,7 +47,7 @@ namespace AnnasEngine.Scripts.GameObjects.Components
         {
             get
             {
-                return Matrix4.LookAt(GetParent().Transform.position, GetParent().Transform.position + Front, Vector3.UnitY);
+                return Matrix4.LookAt(((GameObject3D)GetParent()).Transform.position, ((GameObject3D)GetParent()).Transform.position + Front, Vector3.UnitY);
             }
         }
 
@@ -55,9 +55,9 @@ namespace AnnasEngine.Scripts.GameObjects.Components
         {
             get
             {
-                float scaledFov = MathHelper.Clamp(Fov * GetParent().Transform.scale.Z, 1, 179);
+                float scaledFov = MathHelper.Clamp(Fov * ((GameObject3D)GetParent()).Transform.scale.Z, 1, 179);
 
-                return Matrix4.CreatePerspectiveFieldOfView(MathHelper.DegreesToRadians(scaledFov), Size.X * GetParent().Transform.scale.X / (Size.Y * GetParent().Transform.scale.Y), Near, Far);
+                return Matrix4.CreatePerspectiveFieldOfView(MathHelper.DegreesToRadians(scaledFov), Size.X * ((GameObject3D)GetParent()).Transform.scale.X / (Size.Y * ((GameObject3D)GetParent()).Transform.scale.Y), Near, Far);
             }
         }
 

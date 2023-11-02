@@ -1,4 +1,5 @@
-﻿using AnnasEngine.Scripts.Physics.PhysicsShapes;
+﻿using AnnasEngine.Scripts.GameObjects;
+using AnnasEngine.Scripts.Physics.PhysicsShapes;
 using AnnasEngine.Scripts.Utils;
 using MagicPhysX;
 using MagicPhysX.Toolkit;
@@ -43,10 +44,10 @@ namespace AnnasEngine.Scripts.Physics.PhysicsObjects
 
         public override void BeforePhysicsUpdate()
         {
-            PhysicsShape.Scale = GetParent().Transform.scale;
+            PhysicsShape.Scale = ((GameObject3D)GetParent()).Transform.scale;
 
-            Rigidbody.position = GetParent().Transform.position.ToSystemVector3();
-            Rigidbody.rotation = GetParent().Transform.rotation.ToSystemQuaternion();
+            Rigidbody.position = ((GameObject3D)GetParent()).Transform.position.ToSystemVector3();
+            Rigidbody.rotation = ((GameObject3D)GetParent()).Transform.rotation.ToSystemQuaternion();
 
             switch (PhysicsShape.Type)
             {
@@ -86,8 +87,8 @@ namespace AnnasEngine.Scripts.Physics.PhysicsObjects
 
         public override void AfterPhysicsUpdate()
         {
-            GetParent().Transform.position = Rigidbody.position.ToOpenTKVector3();
-            GetParent().Transform.rotation = Rigidbody.rotation.ToOpenTKQuaternion();
+            ((GameObject3D)GetParent()).Transform.position = Rigidbody.position.ToOpenTKVector3();
+            ((GameObject3D)GetParent()).Transform.rotation = Rigidbody.rotation.ToOpenTKQuaternion();
         }
     }
 }

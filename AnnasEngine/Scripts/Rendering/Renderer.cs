@@ -1,3 +1,4 @@
+using AnnasEngine.Scripts.GameObjects;
 using AnnasEngine.Scripts.GameObjects.Components;
 using AnnasEngine.Scripts.OpenGL.Shaders;
 using AnnasEngine.Scripts.OpenGL.VertexArrayObjects;
@@ -25,7 +26,9 @@ namespace AnnasEngine.Scripts.Rendering
             Shader.Bind();
             VertexArrayObject.Bind();
 
-            Shader.SetVector3("uViewPos", camera.GetParent().Transform.position);
+            GameObject3D cameraParent = (GameObject3D)camera.GetParent();
+
+            Shader.SetVector3("uViewPos", cameraParent.Transform.position);
             Shader.SetMatrix4("uView", false, camera.ViewMatrix);
             Shader.SetMatrix4("uProjection", false, camera.ProjectionMatrix);
         }
