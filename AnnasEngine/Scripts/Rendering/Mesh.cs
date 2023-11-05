@@ -1,5 +1,5 @@
-using AnnasEngine.Scripts.OpenGL.BufferObjects;
-using AnnasEngine.Scripts.OpenGL.OpenGLObjects;
+using AnnasEngine.Scripts.Rendering.OpenGL.BufferObjects;
+using AnnasEngine.Scripts.Rendering.OpenGL.OpenGLObjects;
 using OpenTK.Graphics.OpenGL4;
 
 namespace AnnasEngine.Scripts.Rendering

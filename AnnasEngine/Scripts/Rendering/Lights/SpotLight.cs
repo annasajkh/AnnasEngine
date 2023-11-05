@@ -1,6 +1,5 @@
-﻿using AnnasEngine.Scripts.GameObjects;
-using AnnasEngine.Scripts.OpenGL.Shaders;
-using OpenTK.Mathematics;
+﻿using OpenTK.Mathematics;
+using AnnasEngine.Scripts.DataStructures.GameObjects;
 
 namespace AnnasEngine.Scripts.Rendering.Lights
 {

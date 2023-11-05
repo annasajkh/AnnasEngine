@@ -1,5 +1,4 @@
-﻿using AnnasEngine.Scripts.GameObjects;
-using AnnasEngine.Scripts.OpenGL.Shaders;
+﻿using AnnasEngine.Scripts.DataStructures.GameObjects;
 
 namespace AnnasEngine.Scripts.Rendering.Lights
 {

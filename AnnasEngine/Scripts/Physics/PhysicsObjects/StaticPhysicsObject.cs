@@ -1,5 +1,5 @@
 ﻿using AnnasEngine.Scripts.Physics.PhysicsShapes;
-using AnnasEngine.Scripts.Utils;
+using AnnasEngine.Scripts.Utils.Extensions;
 using MagicPhysX;
 using MagicPhysX.Toolkit;
 using Transform = AnnasEngine.Scripts.DataStructures.Transform;

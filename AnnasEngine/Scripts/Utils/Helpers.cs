@@ -1,9 +1,18 @@
+using AnnasEngine.Scripts.DataStructures.Vertex;
+using AnnasEngine.Scripts.DataStructures.Vertex.Components;
+using AnnasEngine.Scripts.Rendering.OpenGL.VertexArrayObjects;
+using AnnasEngine.Scripts.Rendering.OpenGL.VertexArrayObjects.Components;
+using Assimp;
+using OpenTK.Graphics.OpenGL4;
 using OpenTK.Mathematics;
+using Mesh = AnnasEngine.Scripts.Rendering.Mesh;
 
 namespace AnnasEngine.Scripts.Utils
 {
     public static class Helpers
     {
+        private static AssimpContext importer = new AssimpContext();
+
         private static float SnapToGrid(float value, float gridSize)
         {
             return (float)(MathHelper.Floor(value / gridSize) * gridSize);
@@ -35,6 +44,96 @@ namespace AnnasEngine.Scripts.Utils
             }
         }
 
+        public static List<Mesh> LoadModelFromFile(string path, BufferUsageHint bufferUsageHint, VertexArrayObject vertexArrayObject)
+        {
+            List<Mesh> meshes = new List<Mesh>();
+
+            importer.SetConfig(new Assimp.Configs.NormalSmoothingAngleConfig(66.0f));
+
+            var model = importer.ImportFile(path, PostProcessPreset.TargetRealTimeMaximumQuality);
+
+            foreach (var mesh in model.Meshes)
+            {
+                List<float> vertices = new List<float>();
+
+                uint[] indices = Array.ConvertAll(mesh.GetIndices(), value => checked((uint)value));
+
+                for (int i = 0; i < mesh.Vertices.Count; i++)
+                {
+                    Vertex vertex = new Vertex();
+
+                    foreach (var vertexArrayComponent in vertexArrayObject.Container.GetAllComponents())
+                    {
+                        switch (vertexArrayComponent)
+                        {
+                            case VertexArrayPositionComponent:
+
+                                if (!mesh.HasVertices)
+                                {
+                                    throw new Exception("One of the mesh in the loaded obj doesn't contain position attribute");
+                                }
+
+                                vertex.AddComponent(new VertexPositionComponent(new Vector3()
+                                {
+                                    X = mesh.Vertices[i].X,
+                                    Y = mesh.Vertices[i].Y,
+                                    Z = mesh.Vertices[i].Z,
+                                }));
+                                break;
+
+                            case VertexArrayColorComponent:
+                                if (!mesh.HasVertexColors(0))
+                                {
+                                    throw new Exception("One of the mesh in the loaded obj doesn't contain color attribute");
+                                }
+
+                                vertex.AddComponent(new VertexNormalComponent(new Vector3()
+                                {
+                                    X = mesh.Normals[i].X,
+                                    Y = mesh.Normals[i].Y,
+                                    Z = mesh.Normals[i].Z,
+                                }));
+                                break;
+
+                            case VertexArrayNormalComponent:
+                                if (!mesh.HasNormals)
+                                {
+                                    throw new Exception("One of the mesh in the loaded obj doesn't contain normal attribute");
+                                }
+
+                                vertex.AddComponent(new VertexColorComponent(new Color4()
+                                {
+                                    R = mesh.VertexColorChannels[0][i].R,
+                                    G = mesh.VertexColorChannels[0][i].G,
+                                    B = mesh.VertexColorChannels[0][i].B,
+                                    A = mesh.VertexColorChannels[0][i].A,
+                                }));
+                                break;
+
+                            case VertexArrayTextureCoordinateComponent:
+                                if (!mesh.HasTextureCoords(0))
+                                {
+                                    throw new Exception("One of the mesh in the loaded obj doesn't contain textures coordinate attribute");
+                                }
+
+                                vertex.AddComponent(new VertexTextureCoordinateComponent(new Vector2()
+                                {
+                                    X = mesh.TextureCoordinateChannels[0][i].X,
+                                    Y = mesh.TextureCoordinateChannels[0][i].Y,
+                                }));
+                                break;
+                        }
+                    }
+
+                    vertices.AddRange(vertex.Build());
+                }
+
+                meshes.Add(new Mesh(bufferUsageHint, vertices.ToArray(), indices));
+            }
+
+
+            return meshes;
+        }
 
     }
 }

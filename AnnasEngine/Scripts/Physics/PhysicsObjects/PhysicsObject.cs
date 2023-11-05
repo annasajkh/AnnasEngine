@@ -1,4 +1,4 @@
-﻿using AnnasEngine.Scripts.DataStructures.Containers;
+﻿using AnnasEngine.Scripts.DataStructures.GameObjects;
 using AnnasEngine.Scripts.Physics.PhysicsShapes;
 
 namespace AnnasEngine.Scripts.Physics.PhysicsObjects

@@ -1,8 +1,3 @@
-D:\Projects\Programming\C#\AnnasEngine\AnnasEngine\bin\Debug\net7.0\Assets\Shaders\Default\shader.frag
-D:\Projects\Programming\C#\AnnasEngine\AnnasEngine\bin\Debug\net7.0\Assets\Shaders\Default\shader.geom
-D:\Projects\Programming\C#\AnnasEngine\AnnasEngine\bin\Debug\net7.0\Assets\Shaders\Default\shader.vert
-D:\Projects\Programming\C#\AnnasEngine\AnnasEngine\bin\Debug\net7.0\Assets\Textures\annasvirtual.png
-D:\Projects\Programming\C#\AnnasEngine\AnnasEngine\bin\Debug\net7.0\Assets\Textures\sun.png
 D:\Projects\Programming\C#\AnnasEngine\AnnasEngine\bin\Debug\net7.0\AnnasEngine.deps.json
 D:\Projects\Programming\C#\AnnasEngine\AnnasEngine\bin\Debug\net7.0\AnnasEngine.dll
 D:\Projects\Programming\C#\AnnasEngine\AnnasEngine\bin\Debug\net7.0\AnnasEngine.pdb
@@ -18,3 +13,9 @@ D:\Projects\Programming\C#\AnnasEngine\AnnasEngine\obj\Debug\net7.0\AnnasEngine.
 D:\Projects\Programming\C#\AnnasEngine\AnnasEngine\obj\Debug\net7.0\refint\AnnasEngine.dll
 D:\Projects\Programming\C#\AnnasEngine\AnnasEngine\obj\Debug\net7.0\AnnasEngine.pdb
 D:\Projects\Programming\C#\AnnasEngine\AnnasEngine\obj\Debug\net7.0\ref\AnnasEngine.dll
+D:\Projects\Programming\C#\AnnasEngine\AnnasEngine\bin\Debug\net7.0\Assets\Shaders\StaticNormalWorldObject\shader.frag
+D:\Projects\Programming\C#\AnnasEngine\AnnasEngine\bin\Debug\net7.0\Assets\Shaders\StaticNormalWorldObject\shader.geom
+D:\Projects\Programming\C#\AnnasEngine\AnnasEngine\bin\Debug\net7.0\Assets\Shaders\StaticNormalWorldObject\shader.vert
+D:\Projects\Programming\C#\AnnasEngine\AnnasEngine\bin\Debug\net7.0\Assets\Shaders\WorldObject\shader.frag
+D:\Projects\Programming\C#\AnnasEngine\AnnasEngine\bin\Debug\net7.0\Assets\Shaders\WorldObject\shader.geom
+D:\Projects\Programming\C#\AnnasEngine\AnnasEngine\bin\Debug\net7.0\Assets\Shaders\WorldObject\shader.vert

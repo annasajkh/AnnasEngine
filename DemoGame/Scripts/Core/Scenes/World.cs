@@ -1,10 +1,11 @@
-﻿using AnnasEngine.Scripts.GameObjects;
-using AnnasEngine.Scripts.GameObjects.Components;
-using AnnasEngine.Scripts.OpenGL.Shaders;
-using AnnasEngine.Scripts.OpenGL.VertexArrayObjects;
+﻿using AnnasEngine.Scripts.DataStructures.GameObjects;
 using AnnasEngine.Scripts.Physics.PhysicsObjects;
+using AnnasEngine.Scripts.Physics.PhysicsShapes;
 using AnnasEngine.Scripts.Rendering;
 using AnnasEngine.Scripts.Rendering.Lights;
+using AnnasEngine.Scripts.Rendering.OpenGL.VertexArrayObjects;
+using AnnasEngine.Scripts.Rendering.OpenGL.VertexArrayObjects.Components;
+using AnnasEngine.Scripts.Utils;
 using DemoGame.Scripts.Core.Entities;
 using MagicPhysX;
 using MagicPhysX.Toolkit;
@@ -22,13 +23,13 @@ namespace DemoGame.Scripts.Core.Scenes
     {
         PhysicsSystem PhysicsSystem { get; }
         PhysicsScene PhysicsScene { get; }
-        public Renderer Renderer { get; }
+        public Renderer WorldObjectRenderer { get; }
 
         public static float TimeScale { get; set; } = 1;
 
         private Player player;
 
-        private List<GameObject3D> cubes = new List<GameObject3D>();
+        private List<GameObject3D> chairs = new List<GameObject3D>();
 
         private GameObject3D floor;
 
@@ -37,21 +38,35 @@ namespace DemoGame.Scripts.Core.Scenes
 
         private float time = 45;
 
+        private List<Mesh> chairMeshes;
+
         GameObject3D light;
 
         public World()
         {
-            Renderer = new Renderer(new DefaultShader(), VertexArrayObject.CreateDefaultVertexArrayObject(false));
 
-            Renderer.Shader.SetFloat("material.shininess", 32f);
+            Shader worldObjectShader = new Shader(vertexShaderPath: Path.GetFullPath("Assets/Shaders/WorldObject/shader.vert"),
+                                                  geometryShaderPath: Path.GetFullPath("Assets/Shaders/WorldObject/shader.geom"),
+                                                  fragmentShaderPath: Path.GetFullPath("Assets/Shaders/WorldObject/shader.frag"));
+
+            VertexArrayObject worldObjectVertexArray = new VertexArrayObject(false);
+
+            worldObjectVertexArray.Container.AddComponent(new VertexArrayPositionComponent());
+            worldObjectVertexArray.Container.AddComponent(new VertexArrayTextureCoordinateComponent());
 
 
-            Renderer.Shader.SetVector3("lightColor", new Vector3(1, 1, 1));
+            chairMeshes = Helpers.LoadModelFromFile("Assets/Models/chair.obj", BufferUsageHint.StaticDraw, worldObjectVertexArray);
+
+            WorldObjectRenderer = new Renderer(worldObjectShader, worldObjectVertexArray);
+
+
+            WorldObjectRenderer.Shader.SetFloat("material.shininess", 32f);
+            WorldObjectRenderer.Shader.SetVector3("lightColor", new Vector3(1, 1, 1));
 
             // bind uniform sampler2D to a texture unit
             // texture unit is like slot of the texture on the shader it's like layout
-            Renderer.Shader.SetInt("material.diffuse", 0);
-            Renderer.Shader.SetInt("material.specular", 0);
+            WorldObjectRenderer.Shader.SetInt("material.diffuse", 0);
+            WorldObjectRenderer.Shader.SetInt("material.specular", 0);
 
 
             // Setup the physics engine
@@ -62,36 +77,31 @@ namespace DemoGame.Scripts.Core.Scenes
             {
                 PxMaterial* pxMaterial = PhysicsSystem.CreateMaterial(0.5f, 0.5f, 0.6f);
 
-
                 floor = GameObject3D.CreateStaticBox(new Transform(Vector3.Zero, Quaternion.Identity, new Vector3(200, 1, 200)), PhysicsScene, pxMaterial);
 
-                Transform transformCube = new Transform(position: new Vector3(Game.Random.NextSingle() * 50 - 25, 10, Game.Random.NextSingle() * 50 - 25),
-                                                        rotation: Quaternion.FromEulerAngles(MathHelper.DegreesToRadians(45), MathHelper.DegreesToRadians(0), MathHelper.DegreesToRadians(45)),
-                                                        scale: Vector3.One);
-
-                light = new GameObject3D(new Transform(new Vector3(50, 10, 0), Quaternion.Identity, Vector3.One));
-
-                PointLight pointLight = new PointLight(Renderer.Shader, 0);
-
-                light.AddComponent(pointLight);
-
-
                 // Setup the timers
-                spawnTimer = new Timer(0.001f, () =>
+                spawnTimer = new Timer(0.1f, () =>
                 {
-                    Console.WriteLine($"Box Count: {cubes.Count}");
-
                     Transform transform = new Transform(position: new Vector3(Game.Random.NextSingle() * 50 - 25, 10, Game.Random.NextSingle() * 50 - 25),
                                                         rotation: Quaternion.FromEulerAngles(Game.Random.NextSingle() * MathF.Tau, Game.Random.NextSingle() * MathF.Tau, Game.Random.NextSingle() * MathF.Tau),
                                                         scale: Vector3.One);
 
-                    GameObject3D cube = GameObject3D.CreateDynamicBox(transform, 10, PhysicsScene, pxMaterial);
+                    GameObject3D chair = new GameObject3D(transform);
 
-                    cubes.Add(cube);
+                    chair.AddComponent(new DynamicPhysicsObject(transform, 10, new BoxShape(Vector3.One), PhysicsScene, pxMaterial));
+                    chair.AddComponent(new Model(chairMeshes));
+
+                    chairs.Add(chair);
+
+                    Console.WriteLine($"Count: {chairs.Count}");
                 });
+
+                spawnTimer.Start();
             }
 
-            spawnTimer.Start();
+            light = new GameObject3D(new Transform(new Vector3(50, 10, 0), Quaternion.Identity, Vector3.One));
+            light.AddComponent(new PointLight(WorldObjectRenderer.Shader, 0));
+
 
             physicsUpdate = new Timer(1f / 60f, PhysicsUpdate);
             physicsUpdate.Start();
@@ -102,7 +112,7 @@ namespace DemoGame.Scripts.Core.Scenes
                                                 rotation: Quaternion.Identity,
                                                 scale: Vector3.One);
 
-            player = new Player(transform, new Vector2(Game.WindowWidth, Game.WindowHeight), Renderer.Shader);
+            player = new Player(transform, new Vector2(Game.WindowWidth, Game.WindowHeight), WorldObjectRenderer.Shader);
         }
 
         public override void Load()
@@ -133,7 +143,7 @@ namespace DemoGame.Scripts.Core.Scenes
 
             if (keyboardState.IsKeyPressed(Keys.Space))
             {
-                foreach (var item in cubes)
+                foreach (var item in chairs)
                 {
                     if (item.Contains<PhysicsObject>())
                     {
@@ -157,16 +167,16 @@ namespace DemoGame.Scripts.Core.Scenes
         {
             floor.GetComponent<StaticPhysicsObject>()?.BeforePhysicsUpdate();
 
-            for (int i = 0; i < cubes.Count; i++)
+            for (int i = 0; i < chairs.Count; i++)
             {
-                cubes[i].GetComponent<DynamicPhysicsObject>()?.BeforePhysicsUpdate();
+                chairs[i].GetComponent<DynamicPhysicsObject>()?.BeforePhysicsUpdate();
             }
 
             PhysicsScene.Update();
 
-            for (int i = 0; i < cubes.Count; i++)
+            for (int i = 0; i < chairs.Count; i++)
             {
-                cubes[i].GetComponent<DynamicPhysicsObject>()?.AfterPhysicsUpdate();
+                chairs[i].GetComponent<DynamicPhysicsObject>()?.AfterPhysicsUpdate();
             }
 
             floor.GetComponent<StaticPhysicsObject>()?.AfterPhysicsUpdate();
@@ -195,9 +205,9 @@ namespace DemoGame.Scripts.Core.Scenes
                 time = 360;
             }
 
-            for (int i = 0; i < cubes.Count; i++)
+            for (int i = 0; i < chairs.Count; i++)
             {
-                cubes[i].Update();
+                chairs[i].Update();
             }
 
             light.Update();
@@ -205,17 +215,17 @@ namespace DemoGame.Scripts.Core.Scenes
 
         public override void Render()
         {
-            Renderer.Begin(player.Camera);
+            WorldObjectRenderer.Begin(player.Camera);
 
             Game.ResourceManager.Textures["annasvirtual"].Bind();
 
-            for (int i = 0; i < cubes.Count; i++)
+            for (int i = 0; i < chairs.Count; i++)
             {
-                Model? cubeModel = cubes[i].GetComponent<Model>();
+                Model? chairModel = chairs[i].GetComponent<Model>();
 
-                if (cubeModel != null)
+                if (chairModel != null)
                 {
-                    Renderer.Render(cubeModel);
+                    WorldObjectRenderer.Render(chairModel);
                 }
             }
 
@@ -223,10 +233,10 @@ namespace DemoGame.Scripts.Core.Scenes
 
             if (floorModel != null)
             {
-                Renderer.Render(floorModel);
+                WorldObjectRenderer.Render(floorModel);
             }
 
-            Renderer.End();
+            WorldObjectRenderer.End();
         }
     }
 }

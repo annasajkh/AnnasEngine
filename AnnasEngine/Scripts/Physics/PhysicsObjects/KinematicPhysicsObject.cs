@@ -1,6 +1,6 @@
-﻿using AnnasEngine.Scripts.GameObjects;
+﻿using AnnasEngine.Scripts.DataStructures.GameObjects;
 using AnnasEngine.Scripts.Physics.PhysicsShapes;
-using AnnasEngine.Scripts.Utils;
+using AnnasEngine.Scripts.Utils.Extensions;
 using MagicPhysX;
 using MagicPhysX.Toolkit;
 using MagicPhysX.Toolkit.Colliders;
@@ -36,7 +36,7 @@ namespace AnnasEngine.Scripts.Physics.PhysicsObjects
                     break;
 
                 case ColliderType.Plane:
-                    throw new Exception("Error: Plane shape can only be static");
+                    throw new Exception("Plane shape can only be static");
                 default:
                     throw new Exception("shouldn't happened");
             }
@@ -81,7 +81,7 @@ namespace AnnasEngine.Scripts.Physics.PhysicsObjects
                     break;
 
                 case ColliderType.Plane:
-                    throw new Exception("Error plane shape can only be static");
+                    throw new Exception("Plane shape can only be static");
             }
         }
 

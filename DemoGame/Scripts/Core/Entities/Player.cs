@@ -1,9 +1,8 @@
 using AnnasEngine.Scripts.DataStructures;
-using AnnasEngine.Scripts.GameObjects;
-using AnnasEngine.Scripts.GameObjects.Components;
-using AnnasEngine.Scripts.OpenGL.Shaders;
+using AnnasEngine.Scripts.DataStructures.GameObjects;
+using AnnasEngine.Scripts.Rendering;
 using AnnasEngine.Scripts.Rendering.Lights;
-using AnnasEngine.Scripts.Utils;
+using AnnasEngine.Scripts.Utils.Extensions;
 using OpenTK.Mathematics;
 using OpenTK.Windowing.GraphicsLibraryFramework;
 

@@ -1,4 +1,6 @@
-﻿namespace AnnasEngine.Scripts.DataStructures.Containers
+﻿using AnnasEngine.Scripts.Utils.Exceptions.Container;
+
+namespace AnnasEngine.Scripts.DataStructures.Containers
 {
     public class ContainerSet<C> where C : IComponent
     {
@@ -15,7 +17,7 @@
         {
             if (Components.ContainsKey(component.GetType()))
             {
-                throw new Exception($"Error: Entity already contains {component.GetType()} component");
+                throw new AlreadyContainsComponentException($"ContainerSet already contains {component.GetType()} component");
             }
 
             Components.Add(component.GetType(), component);
@@ -69,7 +71,7 @@
         {
             if (!Contains<T>())
             {
-                throw new Exception($"Error: SetContainer doesn't contains {typeof(T)} component");
+                throw new ComponentNotFoundException($"ContainerSet doesn't contains {typeof(T)} component");
             }
         }
 

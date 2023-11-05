@@ -1,8 +1,6 @@
-using AnnasEngine.Scripts.GameObjects;
-using AnnasEngine.Scripts.GameObjects.Components;
-using AnnasEngine.Scripts.OpenGL.Shaders;
-using AnnasEngine.Scripts.OpenGL.VertexArrayObjects;
-using AnnasEngine.Scripts.Utils;
+using AnnasEngine.Scripts.DataStructures.GameObjects;
+using AnnasEngine.Scripts.Rendering.OpenGL.VertexArrayObjects;
+using AnnasEngine.Scripts.Utils.Settings;
 using OpenTK.Graphics.OpenGL4;
 
 namespace AnnasEngine.Scripts.Rendering
@@ -18,7 +16,6 @@ namespace AnnasEngine.Scripts.Rendering
 
             Shader = shader;
             VertexArrayObject = vertexArrayObject;
-
         }
 
         public void Begin(Camera3D camera)
@@ -37,13 +34,16 @@ namespace AnnasEngine.Scripts.Rendering
         {
             Shader.SetMatrix4("uModel", false, model.ModelMatrix);
 
-            model.Mesh.Bind();
+            for (int i = 0; i < model.Meshes.Count; i++)
+            {
+                model.Meshes[i].Bind();
 
-            VertexArrayObject.ApplyAttributes();
+                VertexArrayObject.ApplyAttributes();
 
-            GL.DrawElements(PrimitiveType.Triangles, model.Mesh.Indices.Length * 3, DrawElementsType.UnsignedInt, 0);
+                GL.DrawElements(PrimitiveType.Triangles, model.Meshes[i].Indices.Length * 3, DrawElementsType.UnsignedInt, 0);
 
-            model.Mesh.Unbind();
+                model.Meshes[i].Unbind();
+            }
         }
 
         public void End()

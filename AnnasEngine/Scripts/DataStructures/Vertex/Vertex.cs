@@ -10,8 +10,6 @@ namespace AnnasEngine.Scripts.DataStructures.Vertex
     {
         public uint AllAttributeSize { get; private set; }
 
-        private static List<float> vertices = new List<float>();
-
         private static StringBuilder stringBuilder = new StringBuilder();
         public Vertex()
         {
@@ -55,12 +53,7 @@ namespace AnnasEngine.Scripts.DataStructures.Vertex
         // build the vertex
         public List<float> Build()
         {
-            if (!(vertices.Count == 0))
-            {
-                vertices.Clear();
-            }
-
-            vertices.Capacity = (int)AllAttributeSize;
+            List<float> vertices = new List<float>();
 
             foreach (VertexComponent component in GetAllComponents())
             {

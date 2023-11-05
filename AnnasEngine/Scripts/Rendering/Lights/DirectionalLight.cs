@@ -1,5 +1,4 @@
-﻿using AnnasEngine.Scripts.OpenGL.Shaders;
-using OpenTK.Mathematics;
+﻿using OpenTK.Mathematics;
 
 namespace AnnasEngine.Scripts.Rendering.Lights
 {

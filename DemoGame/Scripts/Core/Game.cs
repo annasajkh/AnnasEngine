@@ -1,4 +1,4 @@
-﻿using AnnasEngine.Scripts.Managers;
+﻿using AnnasEngine.Scripts.Utils.Managers;
 using DemoGame.Scripts.Core.Scenes;
 using OpenTK.Graphics.OpenGL4;
 using OpenTK.Windowing.Common;

@@ -1,4 +1,6 @@
-﻿namespace AnnasEngine.Scripts.DataStructures.Containers
+﻿using AnnasEngine.Scripts.Utils.Exceptions.Container;
+
+namespace AnnasEngine.Scripts.DataStructures.Containers
 {
     public class Container<C> where C : IComponent
     {
@@ -20,7 +22,7 @@
 
             if (Components.ContainsKey(key))
             {
-                throw new Exception($"Error: Container already contains a component with hashcode {key}");
+                throw new AlreadyContainsComponentException($"Container already contains a component with hashcode {key}");
             }
 
             Components.Add(key, component);
@@ -36,7 +38,7 @@
 
             if (!Components.ContainsKey(key))
             {
-                throw new Exception($"Error: Container doesn't contain a component with hashcode {key}");
+                throw new ComponentNotFoundException($"Container doesn't contain a component with hashcode {key}");
             }
 
             Components.Remove(key);
@@ -48,7 +50,7 @@
         {
             if (!Components.ContainsKey(key))
             {
-                throw new Exception($"Error: Container doesn't contain a component with hashcode {key}");
+                throw new ComponentNotFoundException($"Container doesn't contain a component with hashcode {key}");
             }
 
             OnComponentRemoved?.Invoke(this, Components[key]);
@@ -71,7 +73,7 @@
 
             if (keysToRemove.Count == 0)
             {
-                throw new Exception($"Error: Container doesn't contain any components of type {typeof(T)}");
+                throw new ComponentNotFoundException($"Container doesn't contain any components of type {typeof(T)}");
             }
 
             foreach (var key in keysToRemove)
@@ -103,7 +105,7 @@
 
             if (!Components.ContainsKey(oldKey))
             {
-                throw new Exception($"Error: Container doesn't contain a component with hashcode {oldKey}");
+                throw new ComponentNotFoundException($"Container doesn't contain a component with hashcode {oldKey}");
             }
 
             Components.Remove(oldKey);
@@ -150,7 +152,7 @@
 
             if (componentsOfType.Count == 0)
             {
-                throw new Exception($"Error: Container doesn't contain any components of type {typeof(T)}");
+                throw new ComponentNotFoundException($"Container doesn't contain any components of type {typeof(T)}");
             }
 
             return componentsOfType;
