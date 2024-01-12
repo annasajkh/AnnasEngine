@@ -1,8 +1,7 @@
 ﻿using MagicPhysX.Toolkit.Internal;
-using MagicPhysX;
+using System.Numerics;
 using System.Text;
 using static MagicPhysX.NativeMethods;
-using System.Numerics;
 
 namespace MagicPhysX.Toolkit;
 

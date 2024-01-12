@@ -19,3 +19,4 @@ D:\Projects\Programming\C#\AnnasEngine\AnnasEngine\bin\Debug\net7.0\Assets\Shade
 D:\Projects\Programming\C#\AnnasEngine\AnnasEngine\bin\Debug\net7.0\Assets\Shaders\WorldObject\shader.frag
 D:\Projects\Programming\C#\AnnasEngine\AnnasEngine\bin\Debug\net7.0\Assets\Shaders\WorldObject\shader.geom
 D:\Projects\Programming\C#\AnnasEngine\AnnasEngine\bin\Debug\net7.0\Assets\Shaders\WorldObject\shader.vert
+D:\Projects\Programming\C#\AnnasEngine\AnnasEngine\obj\Debug\net7.0\AnnasEngine.sourcelink.json

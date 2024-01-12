@@ -1,15 +1,14 @@
 ﻿using DemoGame.Scripts.Core;
 
-namespace DemoGame.Scripts
+namespace DemoGame.Scripts;
+
+public static class Program
 {
-    public static class Program
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
+        using (Game game = new Game("Demo Game", 960, 540))
         {
-            using (Game game = new Game("Demo Game", 960, 540))
-            {
-                game.Run();
-            }
+            game.Run();
         }
     }
 }

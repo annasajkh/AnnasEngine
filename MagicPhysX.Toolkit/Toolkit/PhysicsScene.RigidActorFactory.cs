@@ -1,5 +1,4 @@
-﻿using MagicPhysX;
-using System.Numerics;
+﻿using System.Numerics;
 using static MagicPhysX.NativeMethods;
 
 namespace MagicPhysX.Toolkit;

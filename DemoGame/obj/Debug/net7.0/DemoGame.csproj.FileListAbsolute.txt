@@ -48,3 +48,4 @@ D:\Projects\Programming\C#\AnnasEngine\DemoGame\bin\Debug\net7.0\runtimes\osx-x6
 D:\Projects\Programming\C#\AnnasEngine\DemoGame\bin\Debug\net7.0\runtimes\win-x64\native\assimp.dll
 D:\Projects\Programming\C#\AnnasEngine\DemoGame\bin\Debug\net7.0\runtimes\win-x86\native\assimp.dll
 D:\Projects\Programming\C#\AnnasEngine\DemoGame\bin\Debug\net7.0\Assets\Models\chair.obj
+D:\Projects\Programming\C#\AnnasEngine\DemoGame\obj\Debug\net7.0\DemoGame.sourcelink.json

@@ -1,8 +1,7 @@
-﻿using MagicPhysX.Toolkit.Internal;
-using MagicPhysX;
-using static MagicPhysX.NativeMethods;
+﻿using MagicPhysX.Toolkit.Colliders;
+using MagicPhysX.Toolkit.Internal;
 using System.Numerics;
-using MagicPhysX.Toolkit.Colliders;
+using static MagicPhysX.NativeMethods;
 
 namespace MagicPhysX.Toolkit;
 

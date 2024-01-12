@@ -44,3 +44,4 @@ D:\Projects\Programming\C#\AnnasEngine\MagicPhysX.Toolkit\obj\Debug\net7.0\Magic
 D:\Projects\Programming\C#\AnnasEngine\MagicPhysX.Toolkit\obj\Debug\net7.0\refint\MagicPhysX.Toolkit.dll
 D:\Projects\Programming\C#\AnnasEngine\MagicPhysX.Toolkit\obj\Debug\net7.0\MagicPhysX.Toolkit.pdb
 D:\Projects\Programming\C#\AnnasEngine\MagicPhysX.Toolkit\obj\Debug\net7.0\ref\MagicPhysX.Toolkit.dll
+D:\Projects\Programming\C#\AnnasEngine\MagicPhysX.Toolkit\obj\Debug\net7.0\MagicPhysX.Toolkit.sourcelink.json

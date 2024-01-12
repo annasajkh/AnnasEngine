@@ -1,5 +1,4 @@
 ﻿// compatible for PxTransform
-using MagicPhysX;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;

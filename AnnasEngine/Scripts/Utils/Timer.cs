@@ -1,41 +1,40 @@
-﻿namespace AnnasEngine.Scripts.Utils
+﻿namespace AnnasEngine.Scripts.Utils;
+
+public class Timer
 {
-    public class Timer
+    public float Time { get; private set; } // in seconds
+    public float WaitTime { get; } // in seconds
+
+    private Action timeout;
+
+    private bool isRunning;
+
+    public Timer(float waitTime, Action timeout)
     {
-        public float Time { get; private set; } // in seconds
-        public float WaitTime { get; } // in seconds
+        WaitTime = waitTime;
+        this.timeout = timeout;
+    }
 
-        private Action timeout;
+    public void Start()
+    {
+        isRunning = true;
+    }
 
-        private bool isRunning;
+    public void Stop()
+    {
+        isRunning = false;
+    }
 
-        public Timer(float waitTime, Action timeout)
+    public void Step(float delta)
+    {
+        if (isRunning)
         {
-            WaitTime = waitTime;
-            this.timeout = timeout;
-        }
+            Time += delta;
 
-        public void Start()
-        {
-            isRunning = true;
-        }
-
-        public void Stop()
-        {
-            isRunning = false;
-        }
-
-        public void Step(float delta)
-        {
-            if (isRunning)
+            if (Time >= WaitTime)
             {
-                Time += delta;
-
-                if (Time >= WaitTime)
-                {
-                    Time = 0;
-                    timeout();
-                }
+                Time = 0;
+                timeout();
             }
         }
     }

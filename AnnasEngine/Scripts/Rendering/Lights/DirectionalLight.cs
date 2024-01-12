@@ -1,32 +1,31 @@
 ﻿using OpenTK.Mathematics;
 
-namespace AnnasEngine.Scripts.Rendering.Lights
+namespace AnnasEngine.Scripts.Rendering.Lights;
+
+public class DirectionalLight : Light
 {
-    public class DirectionalLight : Light
+    private Vector3 direction;
+
+    public Vector3 Direction
     {
-        private Vector3 direction;
-
-        public Vector3 Direction
+        get
         {
-            get
-            {
-                return direction;
-            }
-
-            set
-            {
-                direction = value;
-                Shader.SetVector3($"directionalLights[{directionalLights[this]}].direction", Direction);
-            }
+            return direction;
         }
 
-        public DirectionalLight(Vector3 direction, Shader shader, int shaderIndex) : base("directionalLights", shader, shaderIndex)
+        set
         {
-            Direction = direction;
-            Shader = shader;
-
+            direction = value;
             Shader.SetVector3($"directionalLights[{directionalLights[this]}].direction", Direction);
-            Shader.SetInt("directionalLightCount", directionalLights.Count);
         }
+    }
+
+    public DirectionalLight(Vector3 direction, Shader shader, int shaderIndex) : base("directionalLights", shader, shaderIndex)
+    {
+        Direction = direction;
+        Shader = shader;
+
+        Shader.SetVector3($"directionalLights[{directionalLights[this]}].direction", Direction);
+        Shader.SetInt("directionalLightCount", directionalLights.Count);
     }
 }

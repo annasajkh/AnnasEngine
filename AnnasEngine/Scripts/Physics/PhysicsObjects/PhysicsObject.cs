@@ -1,18 +1,17 @@
 ﻿using AnnasEngine.Scripts.DataStructures.GameObjects;
 using AnnasEngine.Scripts.Physics.PhysicsShapes;
 
-namespace AnnasEngine.Scripts.Physics.PhysicsObjects
+namespace AnnasEngine.Scripts.Physics.PhysicsObjects;
+
+public abstract class PhysicsObject : GameObjectComponent
 {
-    public abstract class PhysicsObject : GameObjectComponent
+    public PhysicsShape PhysicsShape { get; }
+
+    public PhysicsObject(PhysicsShape physicsShape)
     {
-        public PhysicsShape PhysicsShape { get; }
-
-        public PhysicsObject(PhysicsShape physicsShape)
-        {
-            PhysicsShape = physicsShape;
-        }
-
-        public abstract void BeforePhysicsUpdate();
-        public abstract void AfterPhysicsUpdate();
+        PhysicsShape = physicsShape;
     }
+
+    public abstract void BeforePhysicsUpdate();
+    public abstract void AfterPhysicsUpdate();
 }

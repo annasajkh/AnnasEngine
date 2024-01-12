@@ -2,85 +2,84 @@ using AnnasEngine.Scripts.Rendering.OpenGL.BufferObjects;
 using AnnasEngine.Scripts.Rendering.OpenGL.OpenGLObjects;
 using OpenTK.Graphics.OpenGL4;
 
-namespace AnnasEngine.Scripts.Rendering
+namespace AnnasEngine.Scripts.Rendering;
+
+// mesh is a collection of buffer objects and will be render according to its indices
+public class Mesh : OpenGLObject
 {
-    // mesh is a collection of buffer objects and will be render according to its indices
-    public class Mesh : OpenGLObject
+    public VertexBufferObject VertexBufferObject { get; }
+    public ElementBufferObject ElementBufferObject { get; }
+
+    public BufferUsageHint BufferUsageHint { get; set; }
+
+    private float[] vertices;
+    private uint[] indices;
+
+
+    public float[] Vertices
     {
-        public VertexBufferObject VertexBufferObject { get; }
-        public ElementBufferObject ElementBufferObject { get; }
-
-        public BufferUsageHint BufferUsageHint { get; set; }
-
-        private float[] vertices;
-        private uint[] indices;
-
-
-        public float[] Vertices
+        get
         {
-            get
-            {
-                return vertices;
-            }
-
-            set
-            {
-                vertices = value;
-                VertexBufferObject.Data(value);
-            }
+            return vertices;
         }
 
-        public uint[] Indices
+        set
         {
-            get
-            {
-                return indices;
-            }
+            vertices = value;
+            VertexBufferObject.Data(value);
+        }
+    }
 
-            set
-            {
-                indices = value;
-                ElementBufferObject.Data(value);
-            }
+    public uint[] Indices
+    {
+        get
+        {
+            return indices;
         }
 
-        public Mesh(BufferUsageHint bufferUsageHint, float[] vertices, uint[] indices)
+        set
         {
-            this.vertices = vertices;
-            this.indices = indices;
-
-            VertexBufferObject = new VertexBufferObject(bufferUsageHint);
-            ElementBufferObject = new ElementBufferObject(bufferUsageHint);
-
-            Vertices = vertices;
-            Indices = indices;
-
-            BufferUsageHint = bufferUsageHint;
+            indices = value;
+            ElementBufferObject.Data(value);
         }
+    }
 
-        public override void Bind()
-        {
-            VertexBufferObject.Bind();
-            ElementBufferObject.Bind();
-        }
+    public Mesh(BufferUsageHint bufferUsageHint, float[] vertices, uint[] indices)
+    {
+        this.vertices = vertices;
+        this.indices = indices;
 
-        public override void Unbind()
-        {
-            VertexBufferObject.Unbind();
-            ElementBufferObject.Unbind();
-        }
+        VertexBufferObject = new VertexBufferObject(bufferUsageHint);
+        ElementBufferObject = new ElementBufferObject(bufferUsageHint);
 
-        public override void Dispose()
-        {
-            VertexBufferObject.Dispose();
-            ElementBufferObject.Dispose();
+        Vertices = vertices;
+        Indices = indices;
 
-            GC.SuppressFinalize(this);
-        }
+        BufferUsageHint = bufferUsageHint;
+    }
 
-        ~Mesh()
-        {
-            Dispose();
-        }
+    public override void Bind()
+    {
+        VertexBufferObject.Bind();
+        ElementBufferObject.Bind();
+    }
+
+    public override void Unbind()
+    {
+        VertexBufferObject.Unbind();
+        ElementBufferObject.Unbind();
+    }
+
+    public override void Dispose()
+    {
+        VertexBufferObject.Dispose();
+        ElementBufferObject.Dispose();
+
+        GC.SuppressFinalize(this);
+    }
+
+    ~Mesh()
+    {
+        Dispose();
     }
 }

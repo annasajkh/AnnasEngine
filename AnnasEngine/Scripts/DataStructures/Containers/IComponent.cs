@@ -1,7 +1,6 @@
-﻿namespace AnnasEngine.Scripts.DataStructures.Containers
-{
-    public interface IComponent
-    {
+﻿namespace AnnasEngine.Scripts.DataStructures.Containers;
 
-    }
+public interface IComponent
+{
+
 }

@@ -1,43 +1,42 @@
 using AnnasEngine.Scripts.Rendering.OpenGL.OpenGLObjects;
 using OpenTK.Graphics.OpenGL4;
 
-namespace AnnasEngine.Scripts.Rendering.OpenGL.BufferObjects
+namespace AnnasEngine.Scripts.Rendering.OpenGL.BufferObjects;
+
+// ElementBufferObject is the thing that manage indices
+public class ElementBufferObject : BufferObject<uint>
 {
-    // ElementBufferObject is the thing that manage indices
-    public class ElementBufferObject : BufferObject<uint>
+    public BufferUsageHint BufferUsageHint { get; set; }
+
+    public ElementBufferObject(BufferUsageHint bufferUsageHint)
     {
-        public BufferUsageHint BufferUsageHint { get; set; }
+        Handle = GL.GenBuffer();
 
-        public ElementBufferObject(BufferUsageHint bufferUsageHint)
-        {
-            Handle = GL.GenBuffer();
+        BufferUsageHint = bufferUsageHint;
+    }
 
-            BufferUsageHint = bufferUsageHint;
-        }
+    public override void Data(uint[] bufferData)
+    {
+        GL.BindBuffer(BufferTarget.ElementArrayBuffer, Handle);
+        GL.BufferData(BufferTarget.ElementArrayBuffer, bufferData.Length * sizeof(uint), bufferData, BufferUsageHint);
+        GL.BindBuffer(BufferTarget.ElementArrayBuffer, 0);
+    }
 
-        public override void Data(uint[] bufferData)
-        {
-            GL.BindBuffer(BufferTarget.ElementArrayBuffer, Handle);
-            GL.BufferData(BufferTarget.ElementArrayBuffer, bufferData.Length * sizeof(uint), bufferData, BufferUsageHint);
-            GL.BindBuffer(BufferTarget.ElementArrayBuffer, 0);
-        }
+    public override void Bind()
+    {
+        GL.BindBuffer(BufferTarget.ElementArrayBuffer, Handle);
+    }
 
-        public override void Bind()
-        {
-            GL.BindBuffer(BufferTarget.ElementArrayBuffer, Handle);
-        }
+    public override void Unbind()
+    {
+        GL.BindBuffer(BufferTarget.ElementArrayBuffer, 0);
+    }
 
-        public override void Unbind()
-        {
-            GL.BindBuffer(BufferTarget.ElementArrayBuffer, 0);
-        }
+    public override void Dispose()
+    {
+        Console.WriteLine($"ElementBufferObject: {Handle} is Unloaded");
 
-        public override void Dispose()
-        {
-            Console.WriteLine($"ElementBufferObject: {Handle} is Unloaded");
-
-            GL.DeleteBuffer(Handle);
-            GC.SuppressFinalize(this);
-        }
+        GL.DeleteBuffer(Handle);
+        GC.SuppressFinalize(this);
     }
 }
