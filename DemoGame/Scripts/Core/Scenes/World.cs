@@ -1,6 +1,5 @@
 ﻿using AnnasEngine.Scripts.DataStructures.GameObjects;
 using AnnasEngine.Scripts.Physics.PhysicsObjects;
-using AnnasEngine.Scripts.Physics.PhysicsShapes;
 using AnnasEngine.Scripts.Rendering;
 using AnnasEngine.Scripts.Rendering.Lights;
 using AnnasEngine.Scripts.Rendering.OpenGL.VertexArrayObjects;
@@ -63,8 +62,8 @@ public class World : Scene
         WorldObjectRenderer.Shader.SetFloat("material.shininess", 32f);
         WorldObjectRenderer.Shader.SetVector3("lightColor", new Vector3(1, 1, 1));
 
-        // bind uniform sampler2D to a texture unit
-        // texture unit is like slot of the texture on the shader it's like layout
+        // Bind uniform sampler2D to a texture unit
+        // Texture unit is like slot of the texture on the shader it's like layout
         WorldObjectRenderer.Shader.SetInt("material.diffuse", 0);
         WorldObjectRenderer.Shader.SetInt("material.specular", 0);
 
@@ -86,12 +85,7 @@ public class World : Scene
                                                     rotation: Quaternion.FromEulerAngles(Game.Random.NextSingle() * MathF.Tau, Game.Random.NextSingle() * MathF.Tau, Game.Random.NextSingle() * MathF.Tau),
                                                     scale: Vector3.One);
 
-                GameObject3D chair = new GameObject3D(transform);
-
-                chair.AddComponent(new DynamicPhysicsObject(transform, 10, new BoxShape(Vector3.One), PhysicsScene, pxMaterial));
-                chair.AddComponent(new Model(chairMeshes));
-
-                chairs.Add(chair);
+                chairs.Add(GameObject3D.CreateDynamicBox(transform, 10, PhysicsScene, pxMaterial));
 
                 Console.WriteLine($"Count: {chairs.Count}");
             });

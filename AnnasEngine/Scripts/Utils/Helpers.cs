@@ -3,6 +3,7 @@ using AnnasEngine.Scripts.DataStructures.Vertex.Components;
 using AnnasEngine.Scripts.Rendering.OpenGL.VertexArrayObjects;
 using AnnasEngine.Scripts.Rendering.OpenGL.VertexArrayObjects.Components;
 using Assimp;
+using Assimp.Configs;
 using OpenTK.Graphics.OpenGL4;
 using OpenTK.Mathematics;
 using Mesh = AnnasEngine.Scripts.Rendering.Mesh;
@@ -48,7 +49,8 @@ public static class Helpers
     {
         List<Mesh> meshes = new List<Mesh>();
 
-        importer.SetConfig(new Assimp.Configs.NormalSmoothingAngleConfig(66.0f));
+        importer.SetConfig(new NormalSmoothingAngleConfig(66.0f));
+        importer.SetConfig(new GlobalScaleConfig(1));
 
         var model = importer.ImportFile(path, PostProcessPreset.TargetRealTimeMaximumQuality);
 

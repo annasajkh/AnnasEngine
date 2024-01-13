@@ -11,6 +11,7 @@ public class Vertex : ContainerSet<VertexComponent>
     public uint AllAttributeSize { get; private set; }
 
     private static StringBuilder stringBuilder = new StringBuilder();
+
     public Vertex()
     {
         OnComponentAdded += VertexComponentAdded;
