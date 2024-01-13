@@ -11,7 +11,7 @@ public abstract class GameObjectComponent : IComponent
     {
         if (parent == null)
         {
-            throw new ParentNotFoundException("this GameObjectComponent is not assign to a GameObject");
+            throw new ParentNotFoundException("This GameObjectComponent is not assign to a GameObject");
         }
 
         return parent;

@@ -6,8 +6,8 @@ public static class MeshInstance
 {
     private static Dictionary<string, Mesh> meshesCache = new Dictionary<string, Mesh>();
 
-    // performace optimization will not allocated unless it is get called
-    // also will get the cache instead of creating a new one each time
+    // Performace optimization will not allocated unless it is get called
+    // Also will get the cache instead of creating a new one each time
     public static Mesh Quad
     {
         get

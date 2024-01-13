@@ -38,7 +38,7 @@ public unsafe class StaticPhysicsObject : PhysicsObject
                 break;
 
             default:
-                throw new Exception();
+                throw new Exception("Shouldn't happened");
         }
     }
 

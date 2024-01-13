@@ -5,7 +5,7 @@ namespace AnnasEngine.Scripts.Rendering.OpenGL.OpenGLObjects;
 
 public class Texture2D : OpenGLObject
 {
-    // texture unit is like slot of the texture on the shader it's like shader layout
+    // Texture unit is like slot of the texture on the shader it's like shader layout
     public TextureUnit TextureUnit { get; set; }
 
     public Texture2D(ImageResult textureImage, TextureUnit textureUnit)

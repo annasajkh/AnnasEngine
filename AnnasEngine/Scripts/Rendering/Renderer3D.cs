@@ -5,12 +5,12 @@ using OpenTK.Graphics.OpenGL4;
 
 namespace AnnasEngine.Scripts.Rendering;
 
-public class Renderer : IDisposable
+public class Renderer3D : IDisposable
 {
     public Shader Shader { get; set; }
     public VertexArrayObject VertexArrayObject { get; set; }
 
-    public Renderer(Shader shader, VertexArrayObject vertexArrayObject)
+    public Renderer3D(Shader shader, VertexArrayObject vertexArrayObject)
     {
         OpenGLSettings.Init();
 
@@ -60,7 +60,7 @@ public class Renderer : IDisposable
         GC.SuppressFinalize(this);
     }
 
-    ~Renderer()
+    ~Renderer3D()
     {
         Dispose();
     }

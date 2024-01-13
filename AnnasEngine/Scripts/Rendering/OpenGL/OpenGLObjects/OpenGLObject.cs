@@ -1,6 +1,6 @@
 ﻿namespace AnnasEngine.Scripts.Rendering.OpenGL.OpenGLObjects;
 
-// opengl object is an opengl construct that contains some state
+// Opengl object is an opengl construct that contains some state
 public abstract class OpenGLObject : IDisposable
 {
     public int Handle { get; protected set; }

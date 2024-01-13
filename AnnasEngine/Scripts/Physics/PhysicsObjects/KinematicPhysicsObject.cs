@@ -4,6 +4,7 @@ using AnnasEngine.Scripts.Utils.Extensions;
 using MagicPhysX;
 using MagicPhysX.Toolkit;
 using MagicPhysX.Toolkit.Colliders;
+using System.Numerics;
 using Transform = AnnasEngine.Scripts.DataStructures.Transform;
 
 namespace AnnasEngine.Scripts.Physics.PhysicsObjects;
@@ -38,7 +39,7 @@ public unsafe class KinematicPhysicsObject : PhysicsObject
             case ColliderType.Plane:
                 throw new Exception("Plane shape can only be static");
             default:
-                throw new Exception("shouldn't happened");
+                throw new Exception("Shouldn't happened");
         }
     }
 
@@ -63,7 +64,7 @@ public unsafe class KinematicPhysicsObject : PhysicsObject
                 SphereCollider sphereCollider = (SphereCollider)Rigidbody.GetComponent<Collider>();
                 SphereShape sphereShape = (SphereShape)PhysicsShape;
 
-                System.Numerics.Vector3 sphereRadius = (sphereShape.Radius * sphereShape.Scale).ToSystemVector3();
+                Vector3 sphereRadius = (sphereShape.Radius * sphereShape.Scale).ToSystemVector3();
 
                 sphereCollider.radius = (sphereRadius.X + sphereRadius.Y + sphereRadius.Z) / 3;
                 break;
@@ -72,8 +73,8 @@ public unsafe class KinematicPhysicsObject : PhysicsObject
                 CapsuleCollider capsuleCollider = (CapsuleCollider)Rigidbody.GetComponent<Collider>();
                 CapsuleShape capsuleShape = (CapsuleShape)PhysicsShape;
 
-                System.Numerics.Vector3 capsuleRadius = (capsuleShape.Radius * capsuleShape.Scale).ToSystemVector3();
-                System.Numerics.Vector3 capsuleHeight = (capsuleShape.HalfHeight * capsuleShape.Scale).ToSystemVector3();
+                Vector3 capsuleRadius = (capsuleShape.Radius * capsuleShape.Scale).ToSystemVector3();
+                Vector3 capsuleHeight = (capsuleShape.HalfHeight * capsuleShape.Scale).ToSystemVector3();
 
                 capsuleCollider.radius = (capsuleRadius.X + capsuleRadius.Y + capsuleRadius.Z) / 3;
                 capsuleCollider.height = (capsuleHeight.X + capsuleHeight.Y + capsuleHeight.Z) / 3;

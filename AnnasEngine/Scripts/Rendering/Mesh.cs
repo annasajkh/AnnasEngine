@@ -4,7 +4,7 @@ using OpenTK.Graphics.OpenGL4;
 
 namespace AnnasEngine.Scripts.Rendering;
 
-// mesh is a collection of buffer objects and will be render according to its indices
+// Mesh is a collection of buffer objects and will be render according to its indices
 public class Mesh : OpenGLObject
 {
     public VertexBufferObject VertexBufferObject { get; }

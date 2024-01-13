@@ -23,7 +23,7 @@ public class World : Scene
 {
     PhysicsSystem PhysicsSystem { get; }
     PhysicsScene PhysicsScene { get; }
-    public Renderer WorldObjectRenderer { get; }
+    public Renderer3D WorldObjectRenderer { get; }
 
     public static float TimeScale { get; set; } = 1;
 
@@ -57,7 +57,7 @@ public class World : Scene
 
         chairMeshes = Helpers.LoadModelFromFile("Assets/Models/chair.obj", BufferUsageHint.StaticDraw, worldObjectVertexArray);
 
-        WorldObjectRenderer = new Renderer(worldObjectShader, worldObjectVertexArray);
+        WorldObjectRenderer = new Renderer3D(worldObjectShader, worldObjectVertexArray);
 
 
         WorldObjectRenderer.Shader.SetFloat("material.shininess", 32f);

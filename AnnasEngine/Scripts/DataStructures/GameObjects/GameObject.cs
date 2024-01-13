@@ -28,7 +28,7 @@ public class GameObject : ContainerSet<GameObjectComponent>
 
         if (fieldInfo == null)
         {
-            throw new ParentNotFoundException("parent field not found, only component that inherite from GameObjectComponent should be added to GameObject");
+            throw new ParentNotFoundException("Parent field not found, only component that inherite from GameObjectComponent should be added to GameObject");
         }
 
         fieldInfo.SetValue(component, gameObject);

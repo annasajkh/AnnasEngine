@@ -4,8 +4,8 @@ namespace AnnasEngine.Scripts.Utils.Extensions;
 
 public static class TypeConversionExtensions
 {
-    // why opentk implement their own quaternion instead of using the build in one
-    // now i have to do this stupid conversion
+    // Why opentk implement their own quaternion instead of using the build in one
+    // Now i have to do this stupid conversion
     public static Vector3 ToOpenTKVector3(this System.Numerics.Vector3 vector3)
     {
         return new Vector3(vector3.X, vector3.Y, vector3.Z);

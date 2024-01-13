@@ -6,7 +6,7 @@ using OpenTK.Graphics.OpenGL4;
 namespace AnnasEngine.Scripts.Rendering.OpenGL.VertexArrayObjects;
 
 // VertexArrayObject is a specification of how to pass data from VertexBufferObject to the Shader
-// this is also component based so you can build your own custom VertexArrayObject
+// This is also component based so you can build your own custom VertexArrayObject
 public class VertexArrayObject : OpenGLObject
 {
     public Container<VertexArrayComponent> Container { get; }
