@@ -16,6 +16,9 @@ public class ResourceManager
 
     public void AddTexture(string name, string path)
     {
-        Textures.Add(name, new Texture2D(ImageResult.FromStream(File.OpenRead(path), ColorComponents.RedGreenBlueAlpha), OpenTK.Graphics.OpenGL4.TextureUnit.Texture0));
+        using (var stream = File.OpenRead(path))
+        {
+            Textures.Add(name, new Texture2D(ImageResult.FromStream(stream, ColorComponents.RedGreenBlueAlpha), OpenTK.Graphics.OpenGL4.TextureUnit.Texture0));
+        }
     }
 }
