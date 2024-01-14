@@ -52,7 +52,7 @@ public static class Helpers
         importer.SetConfig(new NormalSmoothingAngleConfig(66.0f));
         importer.SetConfig(new GlobalScaleConfig(1));
 
-        var model = importer.ImportFile(path, PostProcessPreset.TargetRealTimeMaximumQuality);
+        var model = importer.ImportFile(Path.GetFullPath(path), PostProcessPreset.TargetRealTimeMaximumQuality);
 
         foreach (var mesh in model.Meshes)
         {
