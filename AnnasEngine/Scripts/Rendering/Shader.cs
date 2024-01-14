@@ -10,9 +10,9 @@ public class Shader : OpenGLObject
 
     public Shader(string vertexShaderPath, string geometryShaderPath, string fragmentShaderPath)
     {
-        string vertexShaderSource = File.ReadAllText(Path.GetFullPath(vertexShaderPath));
-        string geometryShaderSource = File.ReadAllText(Path.GetFullPath(geometryShaderPath));
-        string fragmentShaderSource = File.ReadAllText(Path.GetFullPath(fragmentShaderPath));
+        string vertexShaderSource = File.ReadAllText(vertexShaderPath);
+        string geometryShaderSource = File.ReadAllText(geometryShaderPath);
+        string fragmentShaderSource = File.ReadAllText(fragmentShaderPath);
 
         int vertexShader = GL.CreateShader(ShaderType.VertexShader);
         GL.ShaderSource(vertexShader, vertexShaderSource);
