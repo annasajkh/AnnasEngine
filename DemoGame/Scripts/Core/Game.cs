@@ -33,7 +33,7 @@ public class Game : GameWindow
 
         ResourceManager = new ResourceManager();
 
-        ResourceManager.AddTexture("annasvirtual", Path.GetFullPath("Assets/Textures/annasvirtual.png"));
+        ResourceManager.AddTexture("annasvirtual", "Assets/Textures/annasvirtual.png");
 
 
         SceneManager = new SceneManager(new World());
