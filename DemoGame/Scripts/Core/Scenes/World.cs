@@ -45,9 +45,9 @@ public class World : Scene
     public World()
     {
 
-        Shader worldObjectShader = new Shader(vertexShaderPath: Path.GetFullPath("Assets/Shaders/WorldObject/shader.vert"),
-                                              geometryShaderPath: Path.GetFullPath("Assets/Shaders/WorldObject/shader.geom"),
-                                              fragmentShaderPath: Path.GetFullPath("Assets/Shaders/WorldObject/shader.frag"));
+        Shader worldObjectShader = new Shader(vertexShaderPath: "Assets/Shaders/WorldObject/shader.vert",
+                                              geometryShaderPath: "Assets/Shaders/WorldObject/shader.geom",
+                                              fragmentShaderPath: "Assets/Shaders/WorldObject/shader.frag");
 
         VertexArrayObject worldObjectVertexArray = new VertexArrayObject(false);
 
