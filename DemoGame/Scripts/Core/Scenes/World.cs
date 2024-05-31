@@ -45,9 +45,9 @@ public class World : Scene
     public World()
     {
 
-        Shader worldObjectShader = new Shader(vertexShaderPath: "Assets/Shaders/WorldObject/shader.vert",
-                                              geometryShaderPath: "Assets/Shaders/WorldObject/shader.geom",
-                                              fragmentShaderPath: "Assets/Shaders/WorldObject/shader.frag");
+        Shader worldObjectShader = new Shader(vertexShaderPath: Path.Combine("Assets", "Shaders", "WorldObject", "shader.vert"),
+                                              geometryShaderPath: Path.Combine("Assets", "Shaders","WorldObject", "shader.geom"),
+                                              fragmentShaderPath: Path.Combine("Assets", "Shaders", "WorldObject", "shader.frag"));
 
         VertexArrayObject worldObjectVertexArray = new VertexArrayObject(false);
 
@@ -55,7 +55,7 @@ public class World : Scene
         worldObjectVertexArray.Container.AddComponent(new VertexArrayTextureCoordinateComponent());
 
 
-        chairMeshes = Helpers.LoadModelFromFile("Assets/Models/chair.obj", BufferUsageHint.StaticDraw, worldObjectVertexArray);
+        chairMeshes = Helpers.LoadModelFromFile(Path.Combine("Assets", "Models", "chair.obj"), BufferUsageHint.StaticDraw, worldObjectVertexArray);
 
         WorldObjectRenderer = new Renderer3D(worldObjectShader, worldObjectVertexArray);
 
@@ -189,7 +189,6 @@ public class World : Scene
         player.Update(keyboardState, mouseState, delta);
 
         spawnTimer.Step(delta);
-        physicsUpdate.Step(delta);
 
         //directionalLight.Direction = new Vector3((float)MathHelper.Cos(MathHelper.DegreesToRadians(time)), (float)MathHelper.Sin(MathHelper.DegreesToRadians(time)), 0);
 

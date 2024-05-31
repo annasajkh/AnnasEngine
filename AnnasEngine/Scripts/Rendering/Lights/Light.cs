@@ -51,9 +51,9 @@ public abstract class Light : GameObjectComponent
 
     public string LightUniformName { get; }
 
-    public static Dictionary<DirectionalLight, int> directionalLights = new Dictionary<DirectionalLight, int>();
-    public static Dictionary<PointLight, int> pointLights = new Dictionary<PointLight, int>();
-    public static Dictionary<SpotLight, int> spotLights = new Dictionary<SpotLight, int>();
+    protected static Dictionary<DirectionalLight, int> directionalLights = new Dictionary<DirectionalLight, int>();
+    protected static Dictionary<PointLight, int> pointLights = new Dictionary<PointLight, int>();
+    protected static Dictionary<SpotLight, int> spotLights = new Dictionary<SpotLight, int>();
 
     public int ShaderIndex { get; }
 

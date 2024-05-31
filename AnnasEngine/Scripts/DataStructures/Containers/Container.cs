@@ -4,7 +4,7 @@ namespace AnnasEngine.Scripts.DataStructures.Containers;
 
 public class Container<C> where C : IComponent
 {
-    private Dictionary<int, C> Components { get; } = new Dictionary<int, C>();
+    private Dictionary<int, C> Components { get; } = new();
 
     public delegate void ComponentChangedEvent(Container<C> sender, C component);
     public delegate void ComponentReplacedEvent(Container<C> sender, C oldComponent, C newComponent);
