@@ -21,9 +21,6 @@ https://github.com/opentk/opentk
 
 `sudo dnf install mesa-libGL-devel mesa-libGLU-devel`
 
-`sudo dnf install assimp assimp-devel`
-
-`sudo ln -s /lib64/libdl.so.2 /usr/lib64/libdl.so`
 
 ## For Debian you need to install and link these library
 
